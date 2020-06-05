@@ -1,0 +1,549 @@
+unit Main;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DB, ExtCtrls, DBCtrls, Grids, DBGrids, ADODB, StdCtrls, Constants,
+  ActnList, Menus, ComObj, shellapi, ActiveX, Registry;
+
+type
+  TMain_Form = class(TForm)
+    ADOCon_Herson_Saldo_2020: TADOConnection;
+    ADOQ_Expense_Client: TADOQuery;
+    DBG_Expense_Client: TDBGrid;
+    DBN_Expense_Client: TDBNavigator;
+    ds_Expense_Client: TDataSource;
+    ADOQ_Expense_ClientID: TAutoIncField;
+    ADOQ_Expense_ClientDate: TDateTimeField;
+    ADOQ_Expense_ClientTotal_Sum: TBCDField;
+    ADOQ_Expense_ClientTime_Create: TDateTimeField;
+    ADOQ_Expense_ClientSpended: TBooleanField;
+    ADOQ_Expense_ClientTime_Spend: TDateTimeField;
+    ADOQ_Expense_ClientName: TWideStringField;
+    ADOQ_Expense_ClientClient_ID: TIntegerField;
+    lcb_SelectExpenseByClient: TDBLookupComboBox;
+    cb_Spended: TComboBox;
+    ActionList: TActionList;
+    MainMenu: TMainMenu;
+    ConnectDatabase: TAction;
+    Close: TAction;
+    ByClient: TAction;
+    BySpended: TAction;
+    File1: TMenuItem;
+    ConnectDatabase1: TMenuItem;
+    Close1: TMenuItem;
+    Search1: TMenuItem;
+    ByClient1: TMenuItem;
+    BySpended1: TMenuItem;
+    ExportToExcel: TAction;
+    Report1: TMenuItem;
+    ExportToExcel1: TMenuItem;
+    HelpSimple: TAction;
+    Help1: TMenuItem;
+    Help2: TMenuItem;
+    procedure DBG_Expense_ClientDrawColumnCell(Sender: TObject;
+      const Rect: TRect; DataCol: Integer; Column: TColumn;
+      State: TGridDrawState);
+    procedure DBN_Expense_ClientClick(Sender: TObject; Button: TNavigateBtn);
+    procedure DBG_Expense_ClientCellClick(Column: TColumn);
+    procedure lcb_SelectExpenseByClientKeyPress(Sender: TObject; var Key: Char);
+    procedure FormCreate(Sender: TObject);
+    procedure cb_SpendedKeyPress(Sender: TObject; var Key: Char);
+    procedure DBG_Expense_ClientDblClick(Sender: TObject);
+    procedure CloseExecute(Sender: TObject);
+    procedure ByClientExecute(Sender: TObject);
+    procedure BySpendedExecute(Sender: TObject);
+    procedure lcb_SelectExpenseByClientCloseUp(Sender: TObject);
+    procedure cb_SpendedCloseUp(Sender: TObject);
+    procedure DBG_Expense_ClientKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure ExportToExcelExecute(Sender: TObject);
+    procedure ConnectDatabaseExecute(Sender: TObject);
+    procedure HelpSimpleExecute(Sender: TObject);
+  private
+    procedure CreateNewExpense;
+    procedure EditCurrentExpense;
+    procedure SpendingCurrentExpense;
+    procedure EditCurrentExpenseSpec;
+    function DBConnect: boolean;
+    { Private declarations }
+  public
+    procedure RefreshADOQ_Expense_Client;
+  end;
+
+procedure SaveRegistry(xIdent: String; xValue: String; xFile: String = 'HKEY_CURRENT_USER'; xSection: String = 'HersonSaldo');
+function ReadRegistry(xIdent: String; xFile: String = 'HKEY_CURRENT_USER'; xSection: String = 'HersonSaldo'): String;
+
+var
+  Main_Form: TMain_Form;
+
+implementation
+
+uses
+  Client, Spec, Help;
+
+{$R *.dfm}
+
+procedure SaveRegistry(xIdent: String; xValue: String; xFile: String = 'HKEY_CURRENT_USER'; xSection: String = 'HersonSaldo');
+var
+  FileReg: TRegIniFile;
+begin
+   FileReg := TRegIniFile.Create(xFile);
+   Try
+      FileReg.WriteString(xSection, xIdent, xValue);
+   Finally
+      FileReg.Free;
+   end;
+end;
+
+function ReadRegistry(xIdent: String; xFile: String = 'HKEY_CURRENT_USER'; xSection: String = 'HersonSaldo'): String;
+var
+  FileReg: TRegIniFile;
+begin
+   FileReg := TRegIniFile.Create(xFile);
+   Try
+      Result := FileReg.ReadString(xSection, xIdent, '');
+   Finally
+      FileReg.Free;
+   end;
+end;
+
+procedure TMain_Form.ByClientExecute(Sender: TObject);
+begin
+  Form_Client.ADOQ_Client.Active := True;
+  cb_Spended.Visible := False;
+  lcb_SelectExpenseByClient.Visible := True;
+  lcb_SelectExpenseByClient.SetFocus;
+end;
+
+procedure TMain_Form.BySpendedExecute(Sender: TObject);
+begin
+  cb_Spended.Visible := True;
+  lcb_SelectExpenseByClient.Visible := False;
+  cb_Spended.SetFocus;
+end;
+
+procedure TMain_Form.cb_SpendedCloseUp(Sender: TObject);
+begin
+    ADOQ_Expense_Client.Active := False;
+    ADOQ_Expense_Client.SQL.Clear;
+    ADOQ_Expense_Client.SQL.Add(ArrExpenseClientSQLQueryText[sqSpended]);
+    ADOQ_Expense_Client.Parameters.ParamByName(ArrExpenseClientParamNames[sqSpended]).Value := cb_Spended.ItemIndex;
+    ADOQ_Expense_Client.Active := True;
+end;
+
+procedure TMain_Form.cb_SpendedKeyPress(Sender: TObject; var Key: Char);
+begin
+if ord(Key) = VK_RETURN then
+  begin
+    ADOQ_Expense_Client.Active := False;
+    ADOQ_Expense_Client.SQL.Clear;
+    ADOQ_Expense_Client.SQL.Add(ArrExpenseClientSQLQueryText[sqSpended]);
+    ADOQ_Expense_Client.Parameters.ParamByName(ArrExpenseClientParamNames[sqSpended]).Value := cb_Spended.ItemIndex;
+    ADOQ_Expense_Client.Active := True;
+  end
+else
+  if ord(Key) = VK_ESCAPE then
+    begin
+      ADOQ_Expense_Client.Active := False;
+      ADOQ_Expense_Client.SQL.Clear;
+      ADOQ_Expense_Client.SQL.Add(ArrExpenseClientSQLQueryText[sqNone]);
+      ADOQ_Expense_Client.Active := True;
+      cb_Spended.Visible := False;
+    end;
+end;
+
+procedure TMain_Form.CloseExecute(Sender: TObject);
+begin
+  Application.Terminate;
+end;
+
+procedure TMain_Form.ConnectDatabaseExecute(Sender: TObject);
+var
+  ConnStr: string;
+
+begin
+
+  ConnStr := ReadRegistry('ConnStr');
+  ConnStr := PromptDataSource(Main_Form.Handle, ConnStr);
+
+  try
+    ADOCon_Herson_Saldo_2020.Close;
+    ADOCon_Herson_Saldo_2020.ConnectionString := ConnStr;
+    ADOCon_Herson_Saldo_2020.LoginPrompt := False;
+    ADOCon_Herson_Saldo_2020.Open;
+  except
+    ShowMessage('Соединиться с выбранной БД не удалось');
+    Exit;
+  end;
+
+  SaveRegistry('ConnStr', ConnStr);
+  ADOQ_Expense_Client.Active := True;
+
+end;
+
+procedure TMain_Form.CreateNewExpense;
+begin
+  ADOQ_Expense_Client.Insert;
+  ADOQ_Expense_Client.Fields.FieldByName('Name').ReadOnly := False;
+  if Client.Form_Client.ShowModal = mrOK then
+    begin
+      DBG_Expense_Client.DataSource.DataSet.FieldByName('Client_ID').Value := Form_Client.SelectedClientID;
+      DBG_Expense_Client.DataSource.DataSet.FieldByName('Name').Value := Form_Client.SelectedClientName;
+      ADOQ_Expense_Client.Post;
+    end
+  else
+    ADOQ_Expense_Client.Cancel;
+    RefreshADOQ_Expense_Client;
+end;
+
+function TMain_Form.DBConnect: boolean;
+var
+  ConnectStr : string;
+
+  procedure SaveRegistry(xIdent: String; xValue: String; xFile: String = 'HKEY_CURRENT_USER'; xSection: String = 'HersonSaldo');
+  var
+    FileReg: TRegIniFile;
+  begin
+     FileReg := TRegIniFile.Create(xFile);
+     Try
+        FileReg.WriteString(xSection, xIdent, xValue);
+     Finally
+        FileReg.Free;
+     end;
+  end;
+
+  function ReadRegistry(xIdent: String; xFile: String = 'HKEY_CURRENT_USER'; xSection: String = 'HersonSaldo'): String;
+  var
+    FileReg: TRegIniFile;
+  begin
+     FileReg := TRegIniFile.Create(xFile);
+     Try
+        Result := FileReg.ReadString(xSection, xIdent, '');
+     Finally
+        FileReg.Free;
+     end;
+  end;
+
+begin
+  ConnectStr := ReadRegistry('ConnectStr');
+
+  Result := false;
+
+  ADOCon_Herson_Saldo_2020.Close;
+  ADOCon_Herson_Saldo_2020.ConnectionString := ConnectStr;
+  ADOCon_Herson_Saldo_2020.LoginPrompt := False;
+
+  if (NOT ADOCon_Herson_Saldo_2020.Connected) then
+    try
+      //ADOCon_Herson_Saldo_2020.
+      Result:=True;
+    except on E:Exception do
+      begin
+      MessageDlg('There was an error connecting to the database. Error:' + #13#10 + e.Message, mtError, [mbOk],0);
+
+      SaveRegistry('ConnectStr', ConnectStr);
+
+      Result := DBConnect;
+
+      end;
+    end;
+end;
+
+procedure TMain_Form.DBG_Expense_ClientCellClick(Column: TColumn);
+begin
+if ADOQ_Expense_Client.State in [dsEdit, dsInsert] then
+  if DBG_Expense_Client.SelectedField.Name = ADOQ_Expense_ClientName.Name then // 'ADOQ_Expense_ClientName' then
+    if Client.Form_Client.ShowModal = mrOK then
+      begin
+        DBG_Expense_Client.DataSource.DataSet.FieldByName('Client_ID').Value := Form_Client.SelectedClientID;
+        DBG_Expense_Client.DataSource.DataSet.FieldByName('Name').Value := Form_Client.SelectedClientName;
+      end;
+
+  if DBG_Expense_Client.SelectedField.Name = ADOQ_Expense_ClientSpended.Name then
+    SpendingCurrentExpense;
+
+end;
+
+procedure TMain_Form.DBG_Expense_ClientDblClick(Sender: TObject);
+begin
+  EditCurrentExpenseSpec;
+end;
+
+procedure TMain_Form.DBG_Expense_ClientDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+const IsChecked : array[Boolean] of Integer =
+      (DFCS_BUTTONCHECK, DFCS_BUTTONCHECK or DFCS_CHECKED);
+var
+  DrawState: Integer;
+  DrawRect: TRect;
+begin
+
+    if (Column.Field.FieldName = 'Spended') then
+    begin
+      DrawRect:=Rect;
+      InflateRect(DrawRect, -1, -1);
+      DrawState := ISChecked[Column.Field.AsBoolean];
+      DBG_Expense_Client.Canvas.Brush.Color:=ClWhite;
+      DBG_Expense_Client.Canvas.FillRect(Rect);
+      DrawFrameControl(DBG_Expense_Client.Canvas.Handle, DrawRect,
+                       DFC_BUTTON, DrawState);
+    end;
+
+end;
+
+procedure TMain_Form.DBG_Expense_ClientKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+
+  case ord(Key) of
+
+    VK_INSERT:
+        CreateNewExpense;
+
+    VK_DELETE:
+      if MessageBox(Main_Form.Handle, 'Удалить выбранный расход?','Удаление расхлда', MB_YESNO + MB_ICONQUESTION ) = mrYes  then
+        begin
+          ADOQ_Expense_Client.Delete;
+          DBG_Expense_Client.SetFocus;
+          RefreshADOQ_Expense_Client;
+        end
+      else
+        DBG_Expense_Client.SetFocus;
+
+    VK_SPACE:
+      SpendingCurrentExpense;
+
+    VK_RETURN:
+      if Shift = [ssShift] then
+        EditCurrentExpense
+      else
+        EditCurrentExpenseSpec;
+
+  end;
+
+end;
+
+procedure TMain_Form.DBN_Expense_ClientClick(Sender: TObject;
+  Button: TNavigateBtn);
+begin
+
+  ADOQ_Expense_Client.Fields.FieldByName('Name').ReadOnly := False;
+
+  if Button = nbInsert  then
+    CreateNewExpense;
+
+  if Button = nbEdit  then
+    EditCurrentExpense;
+
+  if not(Button in [nbInsert, nbEdit]) then
+    ADOQ_Expense_Client.Fields.FieldByName('Name').ReadOnly := True;
+
+  if Button in [nbPost, nbRefresh] then
+    RefreshADOQ_Expense_Client;
+
+end;
+
+procedure TMain_Form.EditCurrentExpense;
+begin
+  ADOQ_Expense_Client.Edit;
+  ADOQ_Expense_Client.Fields.FieldByName('Name').ReadOnly := False;
+  if Client.Form_Client.ShowModal = mrOK then
+    begin
+      DBG_Expense_Client.DataSource.DataSet.FieldByName('Client_ID').Value := Form_Client.SelectedClientID;
+      DBG_Expense_Client.DataSource.DataSet.FieldByName('Name').Value := Form_Client.SelectedClientName;
+      ADOQ_Expense_Client.Post;
+    end
+  else
+    ADOQ_Expense_Client.Cancel;
+    RefreshADOQ_Expense_Client;
+end;
+
+procedure TMain_Form.FormCreate(Sender: TObject);
+var
+  ConnStr : string;
+begin
+
+  try
+    ConnStr := ReadRegistry('ConnStr');
+
+    ADOCon_Herson_Saldo_2020.Close;
+    ADOCon_Herson_Saldo_2020.ConnectionString := ConnStr;
+    ADOCon_Herson_Saldo_2020.LoginPrompt := False;
+    ADOCon_Herson_Saldo_2020.Open;
+  except
+    ShowMessage('Соединиться с БД не удалось, попробуйте задать новое соединение в File -> ConnectDatabase');
+    Exit;
+  end;
+
+  if ADOCon_Herson_Saldo_2020.Connected then
+    begin
+      ADOQ_Expense_Client.Active := False;
+      ADOQ_Expense_Client.SQL.Clear;
+      ADOQ_Expense_Client.SQL.Add(ArrExpenseClientSQLQueryText[sqNone]);
+      ADOQ_Expense_Client.Active := True;
+    end
+  else
+    ShowMessage('Проверьте соединение в File -> ConnectDatabase, а также наличие в выбранной БД таблицы Expense');
+
+end;
+
+procedure TMain_Form.HelpSimpleExecute(Sender: TObject);
+begin
+  Form_Help.ShowModal;
+end;
+
+procedure TMain_Form.lcb_SelectExpenseByClientCloseUp(Sender: TObject);
+begin
+    ADOQ_Expense_Client.Active := False;
+    ADOQ_Expense_Client.SQL.Clear;
+    ADOQ_Expense_Client.SQL.Add(ArrExpenseClientSQLQueryText[sqClient_ID]);
+    ADOQ_Expense_Client.Parameters.ParamByName(ArrExpenseClientParamNames[sqClient_ID]).Value := lcb_SelectExpenseByClient.KeyValue;
+    ADOQ_Expense_Client.Active := True;
+end;
+
+procedure TMain_Form.lcb_SelectExpenseByClientKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+if ord(Key) = VK_RETURN then
+  begin
+    ADOQ_Expense_Client.Active := False;
+    ADOQ_Expense_Client.SQL.Clear;
+    ADOQ_Expense_Client.SQL.Add(ArrExpenseClientSQLQueryText[sqClient_ID]);
+    ADOQ_Expense_Client.Parameters.ParamByName(ArrExpenseClientParamNames[sqClient_ID]).Value := lcb_SelectExpenseByClient.KeyValue;
+    ADOQ_Expense_Client.Active := True;
+  end
+else
+  if ord(Key) = VK_ESCAPE then
+    begin
+      ADOQ_Expense_Client.Active := False;
+      ADOQ_Expense_Client.SQL.Clear;
+      ADOQ_Expense_Client.SQL.Add(ArrExpenseClientSQLQueryText[sqNone]);
+      ADOQ_Expense_Client.Active := True;
+      lcb_SelectExpenseByClient.Visible := False;
+    end;
+
+end;
+
+procedure TMain_Form.RefreshADOQ_Expense_Client;
+var
+  Bookmark : TBookmark;
+begin
+  Bookmark := DBG_Expense_Client.DataSource.DataSet.GetBookmark;
+  ADOQ_Expense_Client.Active := False;
+  ADOQ_Expense_Client.Active := True;
+
+  try
+    DBG_Expense_Client.DataSource.DataSet.GotoBookmark(Bookmark);
+  except
+    ShowMessage('Проверьте строку ввода');
+  end;
+end;
+
+procedure TMain_Form.EditCurrentExpenseSpec;
+begin
+  Form_Spec.Expense_ID := DBG_Expense_Client.DataSource.DataSet.FieldByName('ID').Value;
+  Form_Spec.ShowModal;
+end;
+
+procedure TMain_Form.ExportToExcelExecute(Sender: TObject);
+const
+  col_count = 5;
+  ArrHeader: array [1..5] of string = ('Товар', 'Название', 'Кол-во', 'Цена', 'Сумма');
+var
+  ClassID: TCLSID;
+  SaveD : TSaveDialog;
+  XlsFile : string;
+  XLApp, Sheet: OLEVariant;
+  row, col : Integer;
+  BufVar: OleVariant;
+begin
+  if CLSIDFromProgID(PWideChar(WideString('Excel.Application')), ClassID) <> S_OK then
+   begin
+     Application.MessageBox(PChar('Для импорта переменных необходимо установить на компьютер Microsoft Excel.'), 'Ошибка', MB_ICONERROR);
+     Exit;
+   end;
+
+  SaveD := TSaveDialog.Create(nil);
+  with SaveD do try
+    Filter := 'Книга Excel|*.xls;*.xlsx|*.*|*.*';
+    Options := [ofHideReadOnly,ofFileMustExist,ofEnableSizing];
+    Title := 'Save To...';
+    if not SaveD.Execute then Exit;
+    XlsFile := SaveD.FileName;
+  finally
+    SaveD.Free;
+  end;
+
+  XLApp := CreateOleObject('Excel.Application');
+
+  XLApp.Visible := True;
+  XLApp.Workbooks.Add;
+  Sheet := XLApp.Workbooks[1].WorkSheets[1];
+
+  //задаем имя листу
+  Sheet.name:='Данные_Расхода с ID = ' + IntToStr(DBG_Expense_Client.DataSource.DataSet.FieldByName('ID').Value);
+
+  for col:= 1 to col_count do
+    begin
+      BufVar := ArrHeader[col];
+      sheet.cells[1, col] := BufVar;
+    end;
+
+  Form_Spec.Expense_ID := DBG_Expense_Client.DataSource.DataSet.FieldByName('ID').Value;
+  Form_Spec.ADOQ_Expense_Spec_Prod.Active := False;
+  Form_Spec.ADOQ_Expense_Spec_Prod.SQL.Clear;
+  Form_Spec.ADOQ_Expense_Spec_Prod.SQL.Add(ArrExpenseSpecProdSQLQueryText[sqExpense_ID]);
+  Form_Spec.ADOQ_Expense_Spec_Prod.Parameters.ParamByName(ArrExpenseSpecProdParamNames[sqExpense_ID]).Value := Form_Spec.Expense_ID;
+  Form_Spec.ADOQ_Expense_Spec_Prod.Active := True;
+
+
+  row := 1;
+  try
+    Form_Spec.ADOQ_Expense_Spec_Prod.First;
+      repeat
+        Inc(row);
+        sheet.cells[row, 1] := Form_Spec.ADOQ_Expense_Spec_Prod.FieldValues['Product_ID'];
+
+        BufVar := Form_Spec.ADOQ_Expense_Spec_Prod.FieldValues['ProdName'];
+        sheet.cells[row, 2] := BufVar;
+
+        sheet.cells[row, 3] := Form_Spec.ADOQ_Expense_Spec_Prod.FieldValues['Count'];
+        sheet.cells[row, 4] := Form_Spec.ADOQ_Expense_Spec_Prod.FieldValues['Price'];
+        sheet.cells[row, 5] := Form_Spec.ADOQ_Expense_Spec_Prod.FieldValues['Summa'];
+      until not(Form_Spec.DBG_Expense_Spec_Prod.DataSource.DataSet.FindNext);
+  finally
+
+  end;
+
+
+   XLApp.DisplayAlerts := False;
+
+    try
+       //формат xls 97-2003 если установлен 2003 Excel
+       XLApp.Workbooks[1].SaveAs(XLSFile, $0000002B);
+       showmessage('Файл сохранил 2003-ий офис');
+    except
+      //формат xls 97-2003 если установлен 2007-2010 Excel
+    end;
+
+end;
+
+procedure TMain_Form.SpendingCurrentExpense;
+var
+  Suspended: Boolean;
+const
+  MsgText: array[False..True] of string = ('Провести документ?', 'Отменить проведенный документ?');
+begin
+  Suspended := DBG_Expense_Client.DataSource.DataSet.FieldByName('Spended').Value;
+  if MessageDlg(MsgText[Suspended], mtInformation, mbYesNo, 0) = mrYes then
+  begin
+    ADOQ_Expense_Client.Edit;
+    DBG_Expense_Client.DataSource.DataSet.FieldByName('Spended').Value := not (Suspended);
+    ADOQ_Expense_Client.Post;
+    RefreshADOQ_Expense_Client;
+  end;
+end;
+
+end.

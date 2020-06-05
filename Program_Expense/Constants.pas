@@ -1,0 +1,47 @@
+unit Constants;
+
+interface
+
+type
+  TExpenseClientSelectType   = (sqNone, sqClient_ID, sqSpended);
+  TExpenseSpecProdSelectType = (sqAll, sqExpense_ID, sqProduct_ID);
+
+const
+  ArrExpenseClientSQLQueryText: array [TExpenseClientSelectType] of string =
+    ('SELECT ex.ID, (select top 1 Name from Client cl where cl.ID = ex.Client_ID) as Name, ' +
+        'ex.Client_ID, ex.Date, ex.Time_Create, ex.Total_Sum, ex.Spended, ex.Time_Spend ' +
+        'FROM [Expense] ex',
+     'SELECT ex.ID, (select top 1 Name from Client cl where cl.ID = ex.Client_ID) as Name, ' +
+        'ex.Client_ID, ex.Date, ex.Time_Create, ex.Total_Sum, ex.Spended, ex.Time_Spend ' +
+        'FROM [Expense] ex ' +
+        'Where ex.Client_ID = :PClient_ID',
+     'SELECT ex.ID, (select top 1 Name from Client cl where cl.ID = ex.Client_ID) as Name, ' +
+        'ex.Client_ID, ex.Date, ex.Time_Create, ex.Total_Sum, ex.Spended, ex.Time_Spend ' +
+        'FROM [Expense] ex ' +
+        'Where ex.Spended = :PSpended');
+
+  ArrExpenseClientParamNames: array [TExpenseClientSelectType] of string =
+    ('', 'PClient_ID', 'PSpended');
+
+  ArrExpenseSpecProdSQLQueryText: array [TExpenseSpecProdSelectType] of string =
+    ('SELECT es.ID, (select top 1 Name from Product p where p.ID = es.Product_ID) as ProdName, ' +
+        'es.Product_ID, es.Expense_ID, es.Price, es.Count, es.Summa ' +
+        'FROM Expense_Spec es',
+     'SELECT es.ID, (select top 1 Name from Product p where p.ID = es.Product_ID) as ProdName, ' +
+        'es.Product_ID, es.Expense_ID, es.Price, es.Count, es.Summa ' +
+        'FROM Expense_Spec es ' +
+        'Where es.Expense_ID = :PExpense_ID',
+     'SELECT es.ID, (select top 1 Name from Product p where p.ID = es.Product_ID) as ProdName, ' +
+        'es.Product_ID, es.Expense_ID, es.Price, es.Count, es.Summa ' +
+        'FROM Expense_Spec es ' +
+        'Where es.Expense_ID = :PExpense_ID and es.Product_ID = :PProduct_ID');
+
+  ArrExpenseSpecProdParamNames: array [TExpenseSpecProdSelectType] of string =
+    ('', 'PExpense_ID', 'PProduct_ID');
+
+  cConnectionTimeout = 5;
+
+
+implementation
+
+end.

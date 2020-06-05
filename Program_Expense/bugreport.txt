@@ -1,0 +1,835 @@
+date/time          : 2020-06-05, 11:13:30, 646ms
+computer name      : СЕМЬЯ-ПК
+user name          : Семья
+registered owner   : Microsoft / Microsoft
+operating system   : Windows 7 x64 Service Pack 1 build 7601
+system language    : Russian
+system up time     : 9 hours 4 minutes
+program up time    : 1 minute 25 seconds
+processors         : 4x AMD A6-3620 APU with Radeon(tm) HD Graphics
+physical memory    : 1142/3541 MB (free/total)
+free disk space    : (C:) 28,85 GB
+display mode       : 1920x1080, 32 bit
+process id         : $1ad0
+allocated memory   : 42,54 MB
+largest free block : 581,96 MB
+executable         : Expense_Release.exe
+exec. date/time    : 2020-06-05 11:11
+compiled with      : Delphi 2010
+madExcept version  : 5.0.0
+callstack crc      : $b645098c, $d6f090c4, $d6f090c4
+exception number   : 1
+exception class    : EOleException
+exception message  : [DBNETLIB][ConnectionOpen (Connect()).]SQL Server не существует, или доступ запрещен.
+
+main thread ($e94):
+00584574 +5c Expense_Release.exe ADODB                 TADOConnection.DoConnect
+00566319 +39 Expense_Release.exe DB                    TCustomConnection.SetConnected
+005662d4 +04 Expense_Release.exe DB                    TCustomConnection.Open
+005843e0 +10 Expense_Release.exe ADODB                 TADOConnection.CheckActive
+00588d83 +73 Expense_Release.exe ADODB                 TADOCommand.OpenConnection
+00588cc8 +34 Expense_Release.exe ADODB                 TADOCommand.SetConnectionFlag
+00589949 +11 Expense_Release.exe ADODB                 TCustomADODataSet.SetConnectionFlag
+005899e2 +92 Expense_Release.exe ADODB                 InitializeConnection
+00589cf9 +35 Expense_Release.exe ADODB                 TCustomADODataSet.OpenCursor
+00577605 +55 Expense_Release.exe DB                    TDataSet.SetActive
+005771b3 +33 Expense_Release.exe DB                    TDataSet.Loaded
+0058990f +1b Expense_Release.exe ADODB                 TCustomADODataSet.Loaded
+004ac3ec +24 Expense_Release.exe Classes               NotifyGlobalLoading
+004ac550 +70 Expense_Release.exe Classes               InitInheritedComponent
+0053834e +c6 Expense_Release.exe Forms                 TCustomForm.Create
+00542c3a +76 Expense_Release.exe Forms                 TApplication.CreateForm
+005c3283 +5b Expense_Release.exe Expense_Release 24 +5 initialization
+75da3388 +10 kernel32.dll                              BaseThreadInitThunk
+
+thread $b8c:
+779e0166 +0e ntdll.dll     NtWaitForMultipleObjects
+75da3388 +10 kernel32.dll  BaseThreadInitThunk
+
+thread $14f0:
+779e1f4f +0b ntdll.dll     NtWaitForWorkViaWorkerFactory
+75da3388 +10 kernel32.dll  BaseThreadInitThunk
+
+thread $7b0:
+779df8da +0e ntdll.dll                     NtWaitForSingleObject
+775815c8 +92 KERNELBASE.dll                WaitForSingleObjectEx
+75da118f +3e kernel32.dll                  WaitForSingleObjectEx
+00479775 +0d Expense_Release.exe madExcept CallThreadProcSafe
+004797df +37 Expense_Release.exe madExcept ThreadExceptFrame
+75da3388 +10 kernel32.dll                  BaseThreadInitThunk
+>> created by main thread ($e94) at:
+757bda5e +00 ole32.dll
+
+thread $184c:
+779e0166 +00e ntdll.dll                     NtWaitForMultipleObjects
+00479775 +00d Expense_Release.exe madExcept CallThreadProcSafe
+004797df +037 Expense_Release.exe madExcept ThreadExceptFrame
+75da3388 +010 kernel32.dll                  BaseThreadInitThunk
+>> created by main thread ($e94) at:
+77eb2713 +24f netbios.dll                   Netbios
+
+thread $19c4:
+779df8da +0e ntdll.dll                     NtWaitForSingleObject
+775815c8 +92 KERNELBASE.dll                WaitForSingleObjectEx
+75da118f +3e kernel32.dll                  WaitForSingleObjectEx
+75da1143 +0d kernel32.dll                  WaitForSingleObject
+00479775 +0d Expense_Release.exe madExcept CallThreadProcSafe
+004797df +37 Expense_Release.exe madExcept ThreadExceptFrame
+75da3388 +10 kernel32.dll                  BaseThreadInitThunk
+>> created by main thread ($e94) at:
+04e4b539 +00 comsvcs.dll
+
+thread $1a1c:
+779e1f4f +0b ntdll.dll     NtWaitForWorkViaWorkerFactory
+75da3388 +10 kernel32.dll  BaseThreadInitThunk
+
+thread $1480:
+779dfd9a +0e ntdll.dll                     NtDelayExecution
+77583d36 +5f KERNELBASE.dll                SleepEx
+77584607 +0a KERNELBASE.dll                Sleep
+00479775 +0d Expense_Release.exe madExcept CallThreadProcSafe
+004797df +37 Expense_Release.exe madExcept ThreadExceptFrame
+75da3388 +10 kernel32.dll                  BaseThreadInitThunk
+>> created by main thread ($e94) at:
+74fcee46 +00 comctl32.dll
+
+thread $1ba4:
+779e1f4f +0b ntdll.dll     NtWaitForWorkViaWorkerFactory
+75da3388 +10 kernel32.dll  BaseThreadInitThunk
+
+modules:
+00400000 Expense_Release.exe                     C:\Users\Семья\Desktop\Herson_Saldo_2020\Expense\Program_Expense
+04e20000 OLEDB32R.DLL         6.1.7600.16385     C:\Program Files (x86)\Common Files\System\Ole DB
+04e40000 comsvcs.dll          2001.12.8531.19062 C:\Windows\system32
+04f80000 MSDATL3.dll          6.1.7600.16385     C:\Program Files (x86)\Common Files\System\Ole DB
+0fef0000 FaultRep.dll         6.1.7601.17514     C:\Windows\system32
+1b840000 oledb32.dll          6.1.7601.17514     C:\Program Files (x86)\Common Files\System\Ole DB
+1bd00000 sqloledb.dll         6.1.7601.17514     C:\Program Files (x86)\Common Files\System\Ole DB
+1cb20000 msado15.dll          6.1.7601.17857     C:\Program Files (x86)\Common Files\System\ado
+41210000 MSDART.DLL           6.1.7600.16385     C:\Windows\system32
+56420000 wsock32.dll          6.1.7600.16385     C:\Windows\system32
+57510000 DBNETLIB.DLL         6.1.7600.16385     C:\Windows\system32
+58d10000 msv1_0.DLL           6.1.7601.23497     C:\Windows\SysWOW64
+59130000 wkscli.dll           6.1.7601.17514     C:\Windows\system32
+59140000 netutils.dll         6.1.7601.17514     C:\Windows\system32
+59150000 NETAPI32.dll         6.1.7601.17887     C:\Windows\system32
+5f350000 security.dll         6.1.7600.16385     C:\Windows\system32
+69190000 cryptdll.dll         6.1.7600.16385     C:\Windows\system32
+6bd40000 ntdsapi.dll          6.1.7600.16385     C:\Windows\system32
+6d710000 DUser.dll            6.1.7600.16385     C:\Windows\system32
+6d900000 RpcRtRemote.dll      6.1.7601.17514     C:\Windows\system32
+6da00000 bcryptprimitives.dll 6.1.7601.23451     C:\Windows\SysWOW64
+6f840000 rsaenh.dll           6.1.7600.16385     C:\Windows\system32
+6f880000 CRYPTSP.dll          6.1.7601.18741     C:\Windows\system32
+6f930000 ATL.DLL              3.5.2284.0         C:\Windows\system32
+6f950000 srvcli.dll           6.1.7601.17514     C:\Windows\system32
+6fd10000 credssp.dll          6.1.7601.23497     C:\Windows\system32
+6fe50000 ntmarta.dll          6.1.7600.16385     C:\Windows\system32
+71540000 DBnmpNTw.dll         6.1.7600.16385     C:\Windows\system32
+73650000 version.dll          6.1.7600.16385     C:\Windows\system32
+73d60000 bcrypt.dll           6.1.7600.16385     C:\Windows\system32
+73dc0000 winspool.drv         6.1.7601.17514     C:\Windows\system32
+74100000 SECUR32.DLL          6.1.7601.23497     C:\Windows\system32
+74f70000 dwmapi.dll           6.1.7600.16385     C:\Windows\system32
+74f90000 comctl32.dll         6.10.7601.18837    C:\Windows\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_6.0.7601.18837_none_41e855142bd5705d
+75140000 msimg32.dll          6.1.7600.16385     C:\Windows\system32
+75150000 propsys.dll          7.0.7601.17514     C:\Windows\system32
+75250000 uxtheme.dll          6.1.7600.16385     C:\Windows\system32
+75320000 CRYPTBASE.dll        6.1.7601.23497     C:\Windows\syswow64
+75330000 SspiCli.dll          6.1.7601.23497     C:\Windows\syswow64
+75390000 NSI.dll              6.1.7600.16385     C:\Windows\syswow64
+753a0000 oleaut32.dll         6.1.7601.19144     C:\Windows\syswow64
+75430000 RPCRT4.dll           6.1.7601.23497     C:\Windows\syswow64
+75670000 sechost.dll          6.1.7600.16385     C:\Windows\SysWOW64
+75690000 USER32.dll           6.1.7601.23528     C:\Windows\syswow64
+75790000 ole32.dll            6.1.7601.23392     C:\Windows\syswow64
+75910000 LPK.dll              6.1.7601.23453     C:\Windows\syswow64
+75930000 ADVAPI32.dll         6.1.7601.23418     C:\Windows\syswow64
+759e0000 GDI32.dll            6.1.7601.23457     C:\Windows\syswow64
+75b00000 IMM32.DLL            6.1.7601.17514     C:\Windows\system32
+75ba0000 msvcrt.dll           7.0.7601.17744     C:\Windows\syswow64
+75c60000 CRYPT32.dll          6.1.7601.18741     C:\Windows\syswow64
+75d90000 kernel32.dll         6.1.7601.23418     C:\Windows\syswow64
+75ea0000 SHLWAPI.dll          6.1.7601.17514     C:\Windows\syswow64
+75f00000 MSASN1.dll           6.1.7601.17514     C:\Windows\syswow64
+75f10000 SETUPAPI.dll         6.1.7601.17514     C:\Windows\syswow64
+760b0000 comdlg32.dll         6.1.7601.17514     C:\Windows\syswow64
+76590000 WLDAP32.dll          6.1.7601.17514     C:\Windows\syswow64
+765f0000 USP10.dll            1.626.7601.19054   C:\Windows\syswow64
+76720000 WS2_32.dll           6.1.7601.23451     C:\Windows\syswow64
+76770000 MSCTF.dll            6.1.7601.18731     C:\Windows\syswow64
+76840000 CLBCatQ.DLL          2001.12.8530.16385 C:\Windows\syswow64
+768d0000 shell32.dll          6.1.7601.18952     C:\Windows\syswow64
+77520000 CFGMGR32.dll         6.1.7601.17621     C:\Windows\syswow64
+77550000 DEVOBJ.dll           6.1.7601.17621     C:\Windows\syswow64
+77570000 KERNELBASE.dll       6.1.7601.23418     C:\Windows\syswow64
+779c0000 ntdll.dll            6.1.7601.23418     C:\Windows\SysWOW64
+77d40000 SQLOLEDB.RLL         6.1.7600.16385     C:\Program Files (x86)\Common Files\System\Ole DB
+77eb0000 netbios.dll          6.1.7600.16385     C:\Windows\system32
+
+processes:
+0000 Idle                         0 0    0
+0004 System                       0 0    0
+0130 smss.exe                     0 0    0
+01d8 csrss.exe                    0 0    0
+0220 wininit.exe                  0 0    0
+0238 csrss.exe                    1 0    0
+0264 services.exe                 0 0    0
+0274 lsass.exe                    0 0    0
+027c lsm.exe                      0 0    0
+02b8 winlogon.exe                 1 0    0
+030c svchost.exe                  0 0    0
+035c svchost.exe                  0 0    0
+03c0 MsMpEng.exe                  0 0    0
+014c atiesrxx.exe                 0 0    0
+0164 svchost.exe                  0 0    0
+01d0 svchost.exe                  0 0    0
+02e0 svchost.exe                  0 0    0
+03e4 svchost.exe                  0 0    0
+04f8 svchost.exe                  0 0    0
+0520 atieclxx.exe                 1 0    0
+0650 spoolsv.exe                  0 0    0
+066c svchost.exe                  0 0    0
+06cc armsvc.exe                   0 0    0
+06e4 bitkinexsvc.exe              0 0    0
+06fc BSQLServer.exe               0 0    0
+0724 cfbackd.w32.exe              0 0    0
+0434 mysqld.exe                   0 0    0
+05d8 ReportingServicesService.exe 0 0    0
+0530 ReportingServicesService.exe 0 0    0
+0898 sqlwriter.exe                0 0    0
+0488 NisSrv.exe                   0 0    0
+0974 fdlauncher.exe               0 0    0
+0c64 fdlauncher.exe               0 0    0
+0c94 svchost.exe                  0 0    0
+0f14 sppsvc.exe                   0 0    0
+0fa0 svchost.exe                  0 0    0
+0ffc SearchIndexer.exe            0 0    0
+09c4 taskhost.exe                 1 33   23  normal
+0ec4 dwm.exe                      1 20   2   high
+057c explorer.exe                 1 879  511 normal
+07cc RAVCpl64.exe                 1 54   20  normal
+08e8 msseces.exe                  1 143  60  normal
+0f0c TSVNCache.exe                1 9    4   normal
+09bc Skype.exe                    1 31   35  normal       C:\Program Files (x86)\Microsoft\Skype for Desktop
+0914 TortoiseProc.exe             1 189  82  normal
+090c jusched.exe                  1 9    2   normal       C:\Program Files (x86)\Common Files\Java\Java Update
+0594 Skype.exe                    1 9    4   normal       C:\Program Files (x86)\Microsoft\Skype for Desktop
+0c7c Skype.exe                    1 12   5   normal       C:\Program Files (x86)\Microsoft\Skype for Desktop
+034c Skype.exe                    1 9    1   normal       C:\Program Files (x86)\Microsoft\Skype for Desktop
+0f08 Skype.exe                    1 9    14  normal       C:\Program Files (x86)\Microsoft\Skype for Desktop
+1114 Skype.exe                    1 9    3   normal       C:\Program Files (x86)\Microsoft\Skype for Desktop
+1278 chrome.exe                   1 57   58  normal
+12b0 chrome.exe                   1 9    4   normal
+12fc chrome.exe                   1 10   6   above normal
+131c chrome.exe                   1 4    1   normal
+139c MOM.exe                      1 9    11  normal
+11bc chrome.exe                   1 4    1   normal
+143c chrome.exe                   1 4    1   normal
+1444 chrome.exe                   1 4    1   normal
+156c CCC.exe                      1 36   32  normal
+16a4 chrome.exe                   1 4    1   idle
+1764 chrome.exe                   1 4    1   idle
+17cc chrome.exe                   1 4    1   idle
+02c4 chrome.exe                   1 4    1   idle
+16a0 chrome.exe                   1 4    1   idle
+0934 chrome.exe                   1 4    3   normal
+04c8 bds.exe                      1 1792 542 normal       C:\Program Files (x86)\Embarcadero\RAD Studio\7.0\bin
+1284 prevhost.exe                 1 16   14  normal
+0fb0 chrome.exe                   1 4    1   idle
+19a8 chrome.exe                   1 4    1   idle
+03b0 chrome.exe                   1 4    1   normal
+1918 chrome.exe                   1 4    1   idle
+1bec chrome.exe                   1 4    1   idle
+0f24 sqlbrowser.exe               0 0    0
+1660 sqlservr.exe                 0 0    0
+1bb8 Ssms.exe                     1 353  151 normal       C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\ManagementStudio
+1484 WmiPrvSE.exe                 0 0    0
+0f50 taskeng.exe                  0 0    0
+122c audiodg.exe                  0 0    0
+1944 mmc.exe                      1 0    0
+1aa4 unsecapp.exe                 1 0    0
+0bac SearchProtocolHost.exe       0 0    0
+0e08 SearchFilterHost.exe         0 0    0
+1ad0 Expense_Release.exe          1 98   61  normal       C:\Users\Семья\Desktop\Herson_Saldo_2020\Expense\Program_Expense
+
+hardware:
++ Computer
+  - ACPI x64-based PC
++ Disk drives
+  - ST3500413AS ATA Device
++ Display adapters
+  - AMD Radeon HD 6530D (driver 8.862.3.0)
++ DVD/CD-ROM drives
+  - ATAPI DVD A  DH16ABSH ATA Device
++ Human Interface Devices
+  - USB-устройство ввода
++ IDE ATA/ATAPI controllers
+  - AMD SATA Controller (IDE Mode) (driver 5.2.1.78)
+  - ATA Channel 0
+  - ATA Channel 1
++ Imaging devices
+  - USB Camera
++ Keyboards
+  - Стандартная клавиатура PS/2
++ Mice and other pointing devices
+  - HID-совместимая мышь
++ Monitors
+  - Универсальный монитор PnP
++ Network adapters
+  - Realtek PCIe GBE Family Controller (driver 7.100.422.2016)
+  - Teredo Tunneling Pseudo-Interface
+  - WAN Miniport (IKEv2)
+  - Адаптер Microsoft 6to4
+  - Адаптер Microsoft ISATAP
+  - Адаптер Microsoft ISATAP #2
+  - Мини-порт WAN (SSTP)
+  - Минипорт WAN (IP)
+  - Минипорт WAN (IPv6)
+  - Минипорт WAN (L2TP)
+  - Минипорт WAN (PPPoE)
+  - Минипорт WAN (PPTP)
+  - Минипорт WAN (Сетевой монитор)
++ Processors
+  - AMD A6-3620 APU with Radeon(tm) HD Graphics
+  - AMD A6-3620 APU with Radeon(tm) HD Graphics
+  - AMD A6-3620 APU with Radeon(tm) HD Graphics
+  - AMD A6-3620 APU with Radeon(tm) HD Graphics
++ Sound, video and game controllers
+  - AMD High Definition Audio Device (driver 7.12.0.7702)
+  - Realtek High Definition Audio (driver 6.0.1.6392)
+  - USB Microphone
++ Storage volume shadow copies
+  - Универсальная теневая копия тома
+  - Универсальная теневая копия тома
+  - Универсальная теневая копия тома
++ System devices
+  - AMD IO Driver (driver 1.0.0.15)
+  - AMD SMBus (driver 5.12.0.13)
+  - CMOS и часы
+  - Microsoft ACPI-совместимая система
+  - Microsoft System Management BIOS драйвер
+  - Remote Desktop Device Redirector Bus
+  - UMBus перечислитель
+  - UMBus перечислитель корневой шины
+  - Арифметический сопроцессор
+  - Встроенный динамик
+  - Высокоточный таймер событий
+  - Диспетчер томов
+  - Драйвер клавиатуры сервера терминалов
+  - Драйвер мыши сервера терминалов
+  - Драйвер перечислителя виртуальных дисков (Майкрософт)
+  - Драйвер файла в качестве тома
+  - Интерфейс управления для ACPI Microsoft Windows
+  - Кнопка питания ACPI
+  - Контроллер High Definition Audio (Microsoft)
+  - Контроллер High Definition Audio (Microsoft)
+  - Контроллер прямого доступа к памяти
+  - Перечислитель композитной шины
+  - Перечислитель программных устройств Plug and Play
+  - Порт PCI Express standard Root
+  - Программируемый контроллер прерываний
+  - Ресурсы системной платы
+  - Ресурсы системной платы
+  - Ресурсы системной платы
+  - Ресурсы системной платы
+  - Ресурсы системной платы
+  - Системная плата
+  - Системная плата
+  - Системный таймер
+  - Стандартный мост PCI  - CPU
+  - Стандартный мост PCI  - CPU
+  - Стандартный мост PCI  - CPU
+  - Стандартный мост PCI  - CPU
+  - Стандартный мост PCI  - CPU
+  - Стандартный мост PCI  - CPU
+  - Стандартный мост PCI  - CPU
+  - Стандартный мост PCI  - CPU
+  - Стандартный мост PCI  - CPU
+  - Стандартный мост PCI - ISA
+  - Стандартный мост PCI - PCI
+  - Фиксированная функциональная кнопка ACPI
+  - Шина PCI
++ Universal Serial Bus controllers
+  - AMD USB 3.0 Host Controller (driver 1.0.0.52)
+  - AMD USB 3.0 Host Controller (driver 1.0.0.52)
+  - AMD USB 3.0 Root Hub (driver 1.0.0.52)
+  - AMD USB 3.0 Root Hub (driver 1.0.0.52)
+  - Корневой USB-концентратор
+  - Корневой USB-концентратор
+  - Корневой USB-концентратор
+  - Корневой USB-концентратор
+  - Корневой USB-концентратор
+  - Составное USB устройство
+  - Стандартный OpenHCD USB хост-контроллер
+  - Стандартный OpenHCD USB хост-контроллер
+  - Стандартный OpenHCD USB хост-контроллер
+  - Стандартный расширенный PCI - USB хост-контроллер
+  - Стандартный расширенный PCI - USB хост-контроллер
+
+cpu registers:
+eax = 020a0f50
+ebx = 01ffc4d0
+ecx = 00000000
+edx = 00265770
+esi = 01ffc4d0
+edi = 00000001
+eip = 00584574
+esp = 0018fcf4
+ebp = 0018fd3c
+
+stack dump:
+0018fcf4  74 45 58 00 de fa ed 0e - 01 00 00 00 07 00 00 00  tEX.............
+0018fd04  08 fd 18 00 74 45 58 00 - 50 0f 0a 02 d0 c4 ff 01  ....tEX.P.......
+0018fd14  d0 c4 ff 01 01 00 00 00 - 3c fd 18 00 24 fd 18 00  ........<...$...
+0018fd24  74 45 58 00 5c fd 18 00 - e4 5f 40 00 3c fd 18 00  tEX.\...._@.<...
+0018fd34  01 00 00 00 00 00 00 00 - 84 fd 18 00 1c 63 56 00  .............cV.
+0018fd44  a0 29 08 02 d0 c4 ff 01 - d7 62 56 00 e5 43 58 00  .).......bV..CX.
+0018fd54  a0 29 08 02 88 8d 58 00 - ac fd 18 00 e4 5f 40 00  .)....X......_@.
+0018fd64  84 fd 18 00 01 00 00 00 - 00 00 00 00 00 00 00 00  ................
+0018fd74  00 00 00 00 00 00 00 00 - 00 00 00 00 00 00 00 00  ................
+0018fd84  d0 fd 18 00 cb 8c 58 00 - 00 00 00 00 f0 4d fe 01  ......X......M..
+0018fd94  94 f3 57 00 4c 99 58 00 - a0 83 0a 02 fc 2c 58 00  ..W.L.X......,X.
+0018fda4  34 fe 18 00 e8 99 58 00 - dc fd 18 00 e4 5f 40 00  4.....X......_@.
+0018fdb4  d0 fd 18 00 0a 00 00 00 - 01 2c 58 00 00 00 00 00  .........,X.....
+0018fdc4  00 00 00 00 00 00 00 00 - 00 00 00 00 38 fe 18 00  ............8...
+0018fdd4  fe 9c 58 00 38 fe 18 00 - 40 fe 18 00 e4 5f 40 00  ..X.8...@...._@.
+0018fde4  38 fe 18 00 a0 83 0a 02 - 0a 00 00 00 01 2c 58 00  8............,X.
+0018fdf4  00 00 00 00 00 00 00 00 - 00 00 00 00 00 00 00 00  ................
+0018fe04  00 00 00 00 00 00 00 00 - 00 00 00 00 00 00 00 00  ................
+0018fe14  00 00 00 00 00 00 00 00 - 00 00 00 00 00 00 00 00  ................
+0018fe24  00 00 00 00 04 00 02 80 - 00 00 00 00 00 00 00 00  ................
+
+disassembling:
+[...]
+005c326a      mov     edx, [$5b8c2c]
+005c3270      call    -$806b1 ($542bc4)      ; Forms.TApplication.CreateForm
+005c3275 24   mov     ecx, [$5cab04]
+005c327b      mov     eax, [ebx]
+005c327d      mov     edx, [$5b7928]
+005c3283    > call    -$806c4 ($542bc4)      ; Forms.TApplication.CreateForm
+005c3288 25   mov     ecx, [$5cad68]
+005c328e      mov     eax, [ebx]
+005c3290      mov     edx, [$5b71dc]
+005c3296      call    -$806d7 ($542bc4)      ; Forms.TApplication.CreateForm
+005c329b 26   mov     ecx, [$5ca85c]
+[...]
+
+date/time          : 2020-06-05, 11:17:17, 684ms
+computer name      : СЕМЬЯ-ПК
+user name          : Семья
+registered owner   : Microsoft / Microsoft
+operating system   : Windows 7 x64 Service Pack 1 build 7601
+system language    : Russian
+system up time     : 9 hours 7 minutes
+program up time    : 45 seconds
+processors         : 4x AMD A6-3620 APU with Radeon(tm) HD Graphics
+physical memory    : 1121/3541 MB (free/total)
+free disk space    : (C:) 28,85 GB
+display mode       : 1920x1080, 32 bit
+process id         : $e68
+allocated memory   : 42,56 MB
+largest free block : 581,96 MB
+executable         : Expense_Release.exe
+exec. date/time    : 2020-06-05 11:14
+compiled with      : Delphi 2010
+madExcept version  : 5.0.0
+callstack crc      : $8982b68e, $fc816f45, $fc816f45
+exception number   : 1
+exception class    : EAccessViolation
+exception message  : Access violation at address 005BAB1C in module 'Expense_Release.exe'. Read of address 00000008.
+
+main thread ($1878):
+005bab1c +0ec Expense_Release.exe Main            264 +9 TMain_Form.DBG_Expense_ClientCellClick
+0059a287 +013 Expense_Release.exe DBGrids                TCustomDBGrid.CellClick
+0059d1dd +101 Expense_Release.exe DBGrids                TCustomDBGrid.MouseUp
+00514ac0 +038 Expense_Release.exe Controls               TControl.DoMouseUp
+00514b3c +070 Expense_Release.exe Controls               TControl.WMLButtonUp
+00514120 +2d4 Expense_Release.exe Controls               TControl.WndProc
+005189e8 +568 Expense_Release.exe Controls               TWinControl.WndProc
+00518088 +02c Expense_Release.exe Controls               TWinControl.MainWndProc
+004b9d14 +014 Expense_Release.exe Classes                StdWndProc
+756a7885 +00a USER32.dll                                 DispatchMessageW
+00542a6d +11d Expense_Release.exe Forms                  TApplication.ProcessMessage
+00542ab2 +00a Expense_Release.exe Forms                  TApplication.HandleMessage
+00542ddd +0c9 Expense_Release.exe Forms                  TApplication.Run
+005c32b0 +088 Expense_Release.exe Expense_Release  27 +8 initialization
+75da3388 +010 kernel32.dll                               BaseThreadInitThunk
+
+thread $d4c:
+779e0166 +0e ntdll.dll     NtWaitForMultipleObjects
+75da3388 +10 kernel32.dll  BaseThreadInitThunk
+
+thread $d3c:
+779e1f4f +0b ntdll.dll     NtWaitForWorkViaWorkerFactory
+75da3388 +10 kernel32.dll  BaseThreadInitThunk
+
+thread $1120:
+779e1f4f +0b ntdll.dll     NtWaitForWorkViaWorkerFactory
+75da3388 +10 kernel32.dll  BaseThreadInitThunk
+
+thread $1018:
+779dfd9a +0e ntdll.dll                     NtDelayExecution
+77583d36 +5f KERNELBASE.dll                SleepEx
+77584607 +0a KERNELBASE.dll                Sleep
+00479775 +0d Expense_Release.exe madExcept CallThreadProcSafe
+004797df +37 Expense_Release.exe madExcept ThreadExceptFrame
+75da3388 +10 kernel32.dll                  BaseThreadInitThunk
+>> created by main thread ($1878) at:
+757bda5e +00 ole32.dll
+
+thread $1500:
+779e0166 +00e ntdll.dll                     NtWaitForMultipleObjects
+00479775 +00d Expense_Release.exe madExcept CallThreadProcSafe
+004797df +037 Expense_Release.exe madExcept ThreadExceptFrame
+75da3388 +010 kernel32.dll                  BaseThreadInitThunk
+>> created by main thread ($1878) at:
+77eb2713 +24f netbios.dll                   Netbios
+
+thread $1490:
+779df8da +0e ntdll.dll                     NtWaitForSingleObject
+775815c8 +92 KERNELBASE.dll                WaitForSingleObjectEx
+75da118f +3e kernel32.dll                  WaitForSingleObjectEx
+75da1143 +0d kernel32.dll                  WaitForSingleObject
+00479775 +0d Expense_Release.exe madExcept CallThreadProcSafe
+004797df +37 Expense_Release.exe madExcept ThreadExceptFrame
+75da3388 +10 kernel32.dll                  BaseThreadInitThunk
+>> created by main thread ($1878) at:
+04e4b539 +00 comsvcs.dll
+
+thread $1860:
+779e1f4f +0b ntdll.dll     NtWaitForWorkViaWorkerFactory
+75da3388 +10 kernel32.dll  BaseThreadInitThunk
+
+thread $1910:
+779dfd9a +0e ntdll.dll                     NtDelayExecution
+77583d36 +5f KERNELBASE.dll                SleepEx
+77584607 +0a KERNELBASE.dll                Sleep
+00479775 +0d Expense_Release.exe madExcept CallThreadProcSafe
+004797df +37 Expense_Release.exe madExcept ThreadExceptFrame
+75da3388 +10 kernel32.dll                  BaseThreadInitThunk
+>> created by main thread ($1878) at:
+74fcee46 +00 comctl32.dll
+
+thread $a74:
+779e1f4f +0b ntdll.dll     NtWaitForWorkViaWorkerFactory
+75da3388 +10 kernel32.dll  BaseThreadInitThunk
+
+modules:
+00400000 Expense_Release.exe                     C:\Users\Семья\Desktop\Herson_Saldo_2020\Expense\Program_Expense
+04990000 OLEDB32R.DLL         6.1.7600.16385     C:\Program Files (x86)\Common Files\System\Ole DB
+04e40000 comsvcs.dll          2001.12.8531.19062 C:\Windows\system32
+04f80000 MSDATL3.dll          6.1.7600.16385     C:\Program Files (x86)\Common Files\System\Ole DB
+0fef0000 FaultRep.dll         6.1.7601.17514     C:\Windows\system32
+1b840000 oledb32.dll          6.1.7601.17514     C:\Program Files (x86)\Common Files\System\Ole DB
+1bd00000 sqloledb.dll         6.1.7601.17514     C:\Program Files (x86)\Common Files\System\Ole DB
+1cb20000 msado15.dll          6.1.7601.17857     C:\Program Files (x86)\Common Files\System\ado
+41210000 MSDART.DLL           6.1.7600.16385     C:\Windows\system32
+56420000 wsock32.dll          6.1.7600.16385     C:\Windows\system32
+57510000 DBNETLIB.DLL         6.1.7600.16385     C:\Windows\system32
+58d10000 msv1_0.DLL           6.1.7601.23497     C:\Windows\SysWOW64
+59130000 wkscli.dll           6.1.7601.17514     C:\Windows\system32
+59140000 netutils.dll         6.1.7601.17514     C:\Windows\system32
+59150000 NETAPI32.dll         6.1.7601.17887     C:\Windows\system32
+5f350000 security.dll         6.1.7600.16385     C:\Windows\system32
+69190000 cryptdll.dll         6.1.7600.16385     C:\Windows\system32
+6bd40000 ntdsapi.dll          6.1.7600.16385     C:\Windows\system32
+6d710000 DUser.dll            6.1.7600.16385     C:\Windows\system32
+6d900000 RpcRtRemote.dll      6.1.7601.17514     C:\Windows\system32
+6da00000 bcryptprimitives.dll 6.1.7601.23451     C:\Windows\SysWOW64
+6f840000 rsaenh.dll           6.1.7600.16385     C:\Windows\system32
+6f880000 CRYPTSP.dll          6.1.7601.18741     C:\Windows\system32
+6f930000 ATL.DLL              3.5.2284.0         C:\Windows\system32
+6f950000 srvcli.dll           6.1.7601.17514     C:\Windows\system32
+6fd10000 credssp.dll          6.1.7601.23497     C:\Windows\system32
+6fe50000 ntmarta.dll          6.1.7600.16385     C:\Windows\system32
+71540000 DBnmpNTw.dll         6.1.7600.16385     C:\Windows\system32
+73650000 version.dll          6.1.7600.16385     C:\Windows\system32
+73d60000 bcrypt.dll           6.1.7600.16385     C:\Windows\system32
+73dc0000 winspool.drv         6.1.7601.17514     C:\Windows\system32
+74100000 SECUR32.DLL          6.1.7601.23497     C:\Windows\system32
+74f70000 dwmapi.dll           6.1.7600.16385     C:\Windows\system32
+74f90000 comctl32.dll         6.10.7601.18837    C:\Windows\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_6.0.7601.18837_none_41e855142bd5705d
+75140000 msimg32.dll          6.1.7600.16385     C:\Windows\system32
+75150000 propsys.dll          7.0.7601.17514     C:\Windows\system32
+75250000 uxtheme.dll          6.1.7600.16385     C:\Windows\system32
+75320000 CRYPTBASE.dll        6.1.7601.23497     C:\Windows\syswow64
+75330000 SspiCli.dll          6.1.7601.23497     C:\Windows\syswow64
+75390000 NSI.dll              6.1.7600.16385     C:\Windows\syswow64
+753a0000 oleaut32.dll         6.1.7601.19144     C:\Windows\syswow64
+75430000 RPCRT4.dll           6.1.7601.23497     C:\Windows\syswow64
+75670000 sechost.dll          6.1.7600.16385     C:\Windows\SysWOW64
+75690000 USER32.dll           6.1.7601.23528     C:\Windows\syswow64
+75790000 ole32.dll            6.1.7601.23392     C:\Windows\syswow64
+75910000 LPK.dll              6.1.7601.23453     C:\Windows\syswow64
+75930000 ADVAPI32.dll         6.1.7601.23418     C:\Windows\syswow64
+759e0000 GDI32.dll            6.1.7601.23457     C:\Windows\syswow64
+75b00000 IMM32.DLL            6.1.7601.17514     C:\Windows\system32
+75ba0000 msvcrt.dll           7.0.7601.17744     C:\Windows\syswow64
+75c60000 CRYPT32.dll          6.1.7601.18741     C:\Windows\syswow64
+75d90000 kernel32.dll         6.1.7601.23418     C:\Windows\syswow64
+75ea0000 SHLWAPI.dll          6.1.7601.17514     C:\Windows\syswow64
+75f00000 MSASN1.dll           6.1.7601.17514     C:\Windows\syswow64
+75f10000 SETUPAPI.dll         6.1.7601.17514     C:\Windows\syswow64
+760b0000 comdlg32.dll         6.1.7601.17514     C:\Windows\syswow64
+76590000 WLDAP32.dll          6.1.7601.17514     C:\Windows\syswow64
+765f0000 USP10.dll            1.626.7601.19054   C:\Windows\syswow64
+76720000 WS2_32.dll           6.1.7601.23451     C:\Windows\syswow64
+76770000 MSCTF.dll            6.1.7601.18731     C:\Windows\syswow64
+76840000 CLBCatQ.DLL          2001.12.8530.16385 C:\Windows\syswow64
+768d0000 shell32.dll          6.1.7601.18952     C:\Windows\syswow64
+77520000 CFGMGR32.dll         6.1.7601.17621     C:\Windows\syswow64
+77550000 DEVOBJ.dll           6.1.7601.17621     C:\Windows\syswow64
+77570000 KERNELBASE.dll       6.1.7601.23418     C:\Windows\syswow64
+779c0000 ntdll.dll            6.1.7601.23418     C:\Windows\SysWOW64
+77d40000 SQLOLEDB.RLL         6.1.7600.16385     C:\Program Files (x86)\Common Files\System\Ole DB
+77eb0000 netbios.dll          6.1.7600.16385     C:\Windows\system32
+
+processes:
+0000 Idle                         0 0    0
+0004 System                       0 0    0
+0130 smss.exe                     0 0    0
+01d8 csrss.exe                    0 0    0
+0220 wininit.exe                  0 0    0
+0238 csrss.exe                    1 0    0
+0264 services.exe                 0 0    0
+0274 lsass.exe                    0 0    0
+027c lsm.exe                      0 0    0
+02b8 winlogon.exe                 1 0    0
+030c svchost.exe                  0 0    0
+035c svchost.exe                  0 0    0
+03c0 MsMpEng.exe                  0 0    0
+014c atiesrxx.exe                 0 0    0
+0164 svchost.exe                  0 0    0
+01d0 svchost.exe                  0 0    0
+02e0 svchost.exe                  0 0    0
+03e4 svchost.exe                  0 0    0
+04f8 svchost.exe                  0 0    0
+0520 atieclxx.exe                 1 0    0
+0650 spoolsv.exe                  0 0    0
+066c svchost.exe                  0 0    0
+06cc armsvc.exe                   0 0    0
+06e4 bitkinexsvc.exe              0 0    0
+06fc BSQLServer.exe               0 0    0
+0724 cfbackd.w32.exe              0 0    0
+0434 mysqld.exe                   0 0    0
+05d8 ReportingServicesService.exe 0 0    0
+0530 ReportingServicesService.exe 0 0    0
+0898 sqlwriter.exe                0 0    0
+0488 NisSrv.exe                   0 0    0
+0974 fdlauncher.exe               0 0    0
+0c64 fdlauncher.exe               0 0    0
+0c94 svchost.exe                  0 0    0
+0f14 sppsvc.exe                   0 0    0
+0fa0 svchost.exe                  0 0    0
+0ffc SearchIndexer.exe            0 0    0
+09c4 taskhost.exe                 1 33   23  normal
+0ec4 dwm.exe                      1 20   2   high
+057c explorer.exe                 1 875  511 normal
+07cc RAVCpl64.exe                 1 54   20  normal
+08e8 msseces.exe                  1 143  60  normal
+0f0c TSVNCache.exe                1 9    4   normal
+09bc Skype.exe                    1 31   35  normal       C:\Program Files (x86)\Microsoft\Skype for Desktop
+0914 TortoiseProc.exe             1 189  82  normal
+090c jusched.exe                  1 9    2   normal       C:\Program Files (x86)\Common Files\Java\Java Update
+0594 Skype.exe                    1 9    4   normal       C:\Program Files (x86)\Microsoft\Skype for Desktop
+0c7c Skype.exe                    1 12   5   normal       C:\Program Files (x86)\Microsoft\Skype for Desktop
+034c Skype.exe                    1 9    1   normal       C:\Program Files (x86)\Microsoft\Skype for Desktop
+0f08 Skype.exe                    1 9    14  normal       C:\Program Files (x86)\Microsoft\Skype for Desktop
+1114 Skype.exe                    1 9    3   normal       C:\Program Files (x86)\Microsoft\Skype for Desktop
+1278 chrome.exe                   1 57   58  normal
+12b0 chrome.exe                   1 9    4   normal
+12fc chrome.exe                   1 10   6   above normal
+131c chrome.exe                   1 4    1   normal
+139c MOM.exe                      1 9    11  normal
+11bc chrome.exe                   1 4    1   normal
+143c chrome.exe                   1 4    1   normal
+1444 chrome.exe                   1 4    1   normal
+156c CCC.exe                      1 36   32  normal
+16a4 chrome.exe                   1 4    1   idle
+1764 chrome.exe                   1 4    1   idle
+17cc chrome.exe                   1 4    1   idle
+02c4 chrome.exe                   1 4    1   idle
+16a0 chrome.exe                   1 4    1   idle
+0934 chrome.exe                   1 4    3   normal
+04c8 bds.exe                      1 1838 594 normal       C:\Program Files (x86)\Embarcadero\RAD Studio\7.0\bin
+1284 prevhost.exe                 1 16   14  normal
+0fb0 chrome.exe                   1 4    1   idle
+19a8 chrome.exe                   1 4    1   idle
+03b0 chrome.exe                   1 4    1   normal
+1918 chrome.exe                   1 4    1   idle
+1bec chrome.exe                   1 4    1   idle
+0f24 sqlbrowser.exe               0 0    0
+1660 sqlservr.exe                 0 0    0
+1bb8 Ssms.exe                     1 353  150 normal       C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\ManagementStudio
+1484 WmiPrvSE.exe                 0 0    0
+122c audiodg.exe                  0 0    0
+1944 mmc.exe                      1 0    0
+1aa4 unsecapp.exe                 1 0    0
+0e94 taskmgr.exe                  1 146  108 high
+0e68 Expense_Release.exe          1 108  76  normal       C:\Users\Семья\Desktop\Herson_Saldo_2020\Expense\Program_Expense
+186c SearchProtocolHost.exe       0 0    0
+17e8 SearchFilterHost.exe         0 0    0
+
+hardware:
++ Computer
+  - ACPI x64-based PC
++ Disk drives
+  - ST3500413AS ATA Device
++ Display adapters
+  - AMD Radeon HD 6530D (driver 8.862.3.0)
++ DVD/CD-ROM drives
+  - ATAPI DVD A  DH16ABSH ATA Device
++ Human Interface Devices
+  - USB-устройство ввода
++ IDE ATA/ATAPI controllers
+  - AMD SATA Controller (IDE Mode) (driver 5.2.1.78)
+  - ATA Channel 0
+  - ATA Channel 1
++ Imaging devices
+  - USB Camera
++ Keyboards
+  - Стандартная клавиатура PS/2
++ Mice and other pointing devices
+  - HID-совместимая мышь
++ Monitors
+  - Универсальный монитор PnP
++ Network adapters
+  - Realtek PCIe GBE Family Controller (driver 7.100.422.2016)
+  - Teredo Tunneling Pseudo-Interface
+  - WAN Miniport (IKEv2)
+  - Адаптер Microsoft 6to4
+  - Адаптер Microsoft ISATAP
+  - Адаптер Microsoft ISATAP #2
+  - Мини-порт WAN (SSTP)
+  - Минипорт WAN (IP)
+  - Минипорт WAN (IPv6)
+  - Минипорт WAN (L2TP)
+  - Минипорт WAN (PPPoE)
+  - Минипорт WAN (PPTP)
+  - Минипорт WAN (Сетевой монитор)
++ Processors
+  - AMD A6-3620 APU with Radeon(tm) HD Graphics
+  - AMD A6-3620 APU with Radeon(tm) HD Graphics
+  - AMD A6-3620 APU with Radeon(tm) HD Graphics
+  - AMD A6-3620 APU with Radeon(tm) HD Graphics
++ Sound, video and game controllers
+  - AMD High Definition Audio Device (driver 7.12.0.7702)
+  - Realtek High Definition Audio (driver 6.0.1.6392)
+  - USB Microphone
++ Storage volume shadow copies
+  - Универсальная теневая копия тома
+  - Универсальная теневая копия тома
+  - Универсальная теневая копия тома
++ System devices
+  - AMD IO Driver (driver 1.0.0.15)
+  - AMD SMBus (driver 5.12.0.13)
+  - CMOS и часы
+  - Microsoft ACPI-совместимая система
+  - Microsoft System Management BIOS драйвер
+  - Remote Desktop Device Redirector Bus
+  - UMBus перечислитель
+  - UMBus перечислитель корневой шины
+  - Арифметический сопроцессор
+  - Встроенный динамик
+  - Высокоточный таймер событий
+  - Диспетчер томов
+  - Драйвер клавиатуры сервера терминалов
+  - Драйвер мыши сервера терминалов
+  - Драйвер перечислителя виртуальных дисков (Майкрософт)
+  - Драйвер файла в качестве тома
+  - Интерфейс управления для ACPI Microsoft Windows
+  - Кнопка питания ACPI
+  - Контроллер High Definition Audio (Microsoft)
+  - Контроллер High Definition Audio (Microsoft)
+  - Контроллер прямого доступа к памяти
+  - Перечислитель композитной шины
+  - Перечислитель программных устройств Plug and Play
+  - Порт PCI Express standard Root
+  - Программируемый контроллер прерываний
+  - Ресурсы системной платы
+  - Ресурсы системной платы
+  - Ресурсы системной платы
+  - Ресурсы системной платы
+  - Ресурсы системной платы
+  - Системная плата
+  - Системная плата
+  - Системный таймер
+  - Стандартный мост PCI  - CPU
+  - Стандартный мост PCI  - CPU
+  - Стандартный мост PCI  - CPU
+  - Стандартный мост PCI  - CPU
+  - Стандартный мост PCI  - CPU
+  - Стандартный мост PCI  - CPU
+  - Стандартный мост PCI  - CPU
+  - Стандартный мост PCI  - CPU
+  - Стандартный мост PCI  - CPU
+  - Стандартный мост PCI - ISA
+  - Стандартный мост PCI - PCI
+  - Фиксированная функциональная кнопка ACPI
+  - Шина PCI
++ Universal Serial Bus controllers
+  - AMD USB 3.0 Host Controller (driver 1.0.0.52)
+  - AMD USB 3.0 Host Controller (driver 1.0.0.52)
+  - AMD USB 3.0 Root Hub (driver 1.0.0.52)
+  - AMD USB 3.0 Root Hub (driver 1.0.0.52)
+  - Корневой USB-концентратор
+  - Корневой USB-концентратор
+  - Корневой USB-концентратор
+  - Корневой USB-концентратор
+  - Корневой USB-концентратор
+  - Составное USB устройство
+  - Стандартный OpenHCD USB хост-контроллер
+  - Стандартный OpenHCD USB хост-контроллер
+  - Стандартный OpenHCD USB хост-контроллер
+  - Стандартный расширенный PCI - USB хост-контроллер
+  - Стандартный расширенный PCI - USB хост-контроллер
+
+cpu registers:
+eax = 00000000
+ebx = 01ead790
+ecx = 00000000
+edx = 00000000
+esi = 0059a274
+edi = 00000015
+eip = 005bab1c
+esp = 0018fb6c
+ebp = 0018fb9c
+
+stack dump:
+0018fb6c  a8 fd 18 00 e4 5f 40 00 - 9c fb 18 00 b0 db ea 01  ....._@.........
+0018fb7c  00 00 00 00 00 00 00 00 - 00 00 00 00 00 00 00 00  ................
+0018fb8c  00 00 00 00 00 00 00 00 - 00 00 00 00 00 00 00 00  ................
+0018fb9c  e0 fb 18 00 8d a2 59 00 - b0 db ea 01 e2 d1 59 00  ......Y.......Y.
+0018fbac  d8 fd 18 00 dc d0 59 00 - b0 db ea 01 80 00 9d 77  ......Y........w
+0018fbbc  20 7c b0 00 00 00 00 00 - 3b 28 6b 75 1e 28 6b 75   |......;(ku.(ku
+0018fbcc  12 00 00 00 2b 00 00 00 - 01 00 00 00 01 00 00 00  ....+...........
+0018fbdc  00 00 00 00 54 fd 18 00 - c5 4a 51 00 15 00 00 00  ....T....JQ.....
+0018fbec  39 00 00 00 00 00 00 00 - d8 fd 18 00 b0 db ea 01  9...............
+0018fbfc  41 4b 51 00 ea 02 08 00 - 01 00 00 00 cc 2a 51 00  AKQ..........*Q.
+0018fc0c  54 fd 18 00 cc 47 51 00 - 50 00 00 00 00 00 00 00  T....GQ.P.......
+0018fc1c  00 00 00 00 b0 db ea 01 - d8 fd 18 00 23 41 51 00  ............#AQ.
+0018fc2c  00 00 00 00 00 00 00 00 - 40 39 f4 01 01 00 00 00  ........@9......
+0018fc3c  f8 fb 18 00 00 00 00 00 - a0 fc 18 00 b6 a6 70 75  ..............pu
+0018fc4c  7b 7b ea cb fe ff ff ff - 51 6d 6a 75 e8 6d 6a 75  {{......Qmju.mju
+0018fc5c  00 00 00 00 bb 0f 67 00 - b0 fc 18 00 ed 89 51 00  ......g.......Q.
+0018fc6c  c8 0f 67 00 14 fd 18 00 - 48 7c b0 00 f3 6d 6a 75  ..g.....H|...mju
+0018fc7c  93 ea 98 be 90 fd 18 00 - 00 00 00 00 00 00 00 00  ................
+0018fc8c  bb 0f 67 00 dc fc 18 00 - ed 89 51 00 bb 0f 67 00  ..g.......Q...g.
+0018fc9c  b0 db ea 01 ec fc 18 00 - 1c 86 51 00 bb 0f 67 00  ..........Q...g.
+
+disassembling:
+[...]
+005bab08       pop     eax
+005bab09       mov     ecx, [eax]
+005bab0b       call    dword ptr [ecx+$f4]
+005bab11 264   mov     eax, [ebx+$390]
+005bab17       call    -$1f1ac ($59b970)      ; DBGrids.TCustomDBGrid.GetSelectedField
+005bab1c     > mov     eax, [eax+8]
+005bab1f       mov     edx, [ebx+$3ac]
+005bab25       mov     edx, [edx+8]
+005bab28       call    -$1b2ad1 ($40805c)     ; System.@UStrEqual
+005bab2d       jnz     loc_5bab36
+005bab2f 265   mov     eax, ebx
+[...]
+
